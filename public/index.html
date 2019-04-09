@@ -268,12 +268,12 @@
   function init(jsApiList) {
     let appId = 'wx661994a569e2f0e3';
     let appsecret = '4ee9efca1c18ade6b163603dfb217522';
-    let api_ticket = '';
-    let nonceStr = 'none';
-    let timestamp = new Date().getTime() / 1000;
-    let url = location.href;
+    let api_ticket = 'LIKLckvwlJT9cWIhEQTwfHF6H3gaYd3_JsAM1UCGF3-jTYq6sI1z26YC6M_-ybUi_sCYkd4k596mQ7q8c668fg';
+    let nonceStr = 'tgCKCDO9AKffs3ZqCIWbPDIQAcJZ18iX3tVZr4DgGP4';
+    let timestamp = Math.floor(new Date().getTime() / 1000);
+    let url = location.href;//'http://uatfront.sg.work';
     // console.log('wx, url: ', wx, url);
-    signature = SHA1.sha1(`jsapi_ticket=${api_ticket}&noncestr=${nonceStr}&timestamp=${timeMap}&url=${url}`);
+    signature = SHA1.sha1(`jsapi_ticket=${api_ticket}&noncestr=${nonceStr}&timestamp=${timestamp}&url=${url}`);
     //   ************测试用
     wx.config({
       debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
