@@ -1,5 +1,7 @@
 var request = require('request');
-request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx661994a569e2f0e3&secret=4ee9efca1c18ade6b163603dfb217522', 
+let appid = 'wx79e4dff84f30084b';
+let secret = '28fbe39d77453b42dd63cc607c790339';
+request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='+appid+'&secret='+secret, 
 function (error, response, body) {
   console.log('error:', error); // Print the error if one occurred
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received

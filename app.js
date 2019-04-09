@@ -3,7 +3,10 @@ const express = require('express')
 const app = express()
 app.use('/static', express.static('public'));
 app.use('/', express.static('public'));
+<<<<<<< HEAD
 
+=======
+>>>>>>> 67f279030f3ea3e5fef623a9380d9c3a1cd096b0
 const hostname = '0.0.0.0';
 const port = 8888;
 
