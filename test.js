@@ -7,6 +7,7 @@ function (error, response, body) {
   console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
   console.log('body:', body); // Print the HTML for the Google homepage.
   let ACCESS_TOKEN = JSON.parse(body).access_token;
+  
   let url_get_ticket = `https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=${ACCESS_TOKEN}&type=jsapi`
   request(url_get_ticket, function (error, response, body) {
     let ticket = JSON.parse(body).ticket;

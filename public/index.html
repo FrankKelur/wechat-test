@@ -268,7 +268,6 @@
   function init(jsApiList) {
     let appId = 'wx79e4dff84f30084b'; //'wx661994a569e2f0e3';
     let appsecret = '28fbe39d77453b42dd63cc607c790339'; //'4ee9efca1c18ade6b163603dfb217522';
-    //let api_ticket = 'LIKLckvwlJT9cWIhEQTwfHF6H3gaYd3_JsAM1UCGF3-jTYq6sI1z26YC6M_-ybUi_sCYkd4k596mQ7q8c668fg';
     let api_ticket = 'HoagFKDcsGMVCIY2vOjf9jFY6SyamZahKW1eHUMyOFmRhZ3eVAhsfviKiPH_kL2HA5WOl2Lh5HXM8ON1rnHzFA';
      let nonceStr = 'tgCKCDO9AKffs3ZqCIWbPDIQAcJZ18iX3tVZr4DgGP4';
     let timestamp = Math.floor(new Date().getTime() / 1000);
@@ -309,6 +308,11 @@
     console.log('error: ', res);
     // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
   });
+  let ACCESS_TOKEN = '20_EUCoHsg1M6hbCIXaQoSX75IA2EXmHO4AkmOdlkVt_f_FmP9yrGHaJQiz2Fu_b7ILAKOm_eshVaNS9r0pkBud6RQeldQ1f9DS4o_dDWUOsFv9G8xig8faKRPH1zASYrZsSxzLm_uiezQcNpobWEAgACAMUQ";
+  //  https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN
+  let query = (location.href.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
+  fetch(`https://api.weixin.qq.com/sns/userinfo?access_token=${ACCESS_TOKEN}&openid=${query.code}&lang=zh_CN`)
+  .then(res => res.json()).then(res=> alert(res));
 
 </script>
 
