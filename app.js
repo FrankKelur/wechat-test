@@ -1,12 +1,14 @@
-const http = require('http');
 const sha1 = require('sha1');
+const express = require('express')
+const app = express()
+app.use('/static', express.static('public'));
 
 const hostname = '0.0.0.0';
 const port = 8888;
 
-const server = http.createServer((req, res) => {
+app.get('/', (req, res) => {
   console.log('req', req.url);
-  let params = req.url.split('?')[1].split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
+  let params = (req.url.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
   let { echostr, nonce, signature, timestamp } = params;
   let token = 'zhaipengchao';
   let arr = [token, nonce, timestamp].sort();
@@ -18,8 +20,6 @@ const server = http.createServer((req, res) => {
     return;
   }
   res.end('Hello World\n');
-});
+})
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(port, () => console.log('Example app listening on port 8888!'))
