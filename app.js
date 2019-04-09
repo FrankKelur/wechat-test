@@ -2,7 +2,7 @@ const sha1 = require('sha1');
 const express = require('express')
 const app = express()
 app.use('/static', express.static('public'));
-
+app.use('/', express.static('public'));
 const hostname = '0.0.0.0';
 const port = 8888;
 
