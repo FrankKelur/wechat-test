@@ -266,8 +266,21 @@
 </script>
 <script>
   function init(jsApiList) {
-
     let appId = 'wx79e4dff84f30084b';
+    let appsecret = '28fbe39d77453b42dd63cc607c790339';
+    const opts = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    let url_get_token = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${appId}&secret=${appsecret}`
+    const json = await fetch(url_get_token, {
+      ...opts,
+    })
+    console.log('json.access_token: ', json.access_token);
+
+    // let appId = 'wx79e4dff84f30084b';
     const json2 = {
       "errcode": 0,
       "errmsg": "ok",
