@@ -2,6 +2,9 @@
 <script src='http://res.wx.qq.com/open/js/jweixin-1.4.0.js'></script>
 <script src='/static/sha1.js'></script>
 <script>
+  function getParams() {
+    return (location.href.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
+  }
   function init(jsApiList) {
     let appId = 'wx79e4dff84f30084b';   //'wx661994a569e2f0e3';
 
@@ -18,7 +21,7 @@
     }
     fetch('/get-ticket', getOpt).then(res => res.json()).then(res => {
       console.log('res', res);
-      let { ticket, ACCESS_TOKEN } = res;
+      let { ticket } = res;
       let nonceStr = 'tgCKCDO9AKffs3ZqCIWbPDIQAcJZ18iX3tVZr4DgGP4';
       let timestamp = Math.floor(new Date().getTime() / 1000);
       let url = location.href;
@@ -32,7 +35,8 @@
         signature, // 必填，签名
         jsApiList // 必填，需要使用的JS接口列表
       });
-      fetch(`/get-data?ticket=${ticket}&ACCESS_TOKEN=${ACCESS_TOKEN}`, getOpt)
+      let query = getParams();
+      fetch(`/get-data?code=${query.code}`, getOpt)
       .then(res => res.json())
       .then(res => console.log(res));
     })
