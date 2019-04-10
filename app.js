@@ -7,10 +7,20 @@ var request = require('request');
 const hostname = '0.0.0.0';
 const port = 8888;
 
+var allowCrossDomain = function (req, res, next) {
+  // console.log('req.origin', req.headers)
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+};
+app.use(allowCrossDomain);
+
 function getParams() {
   return (req.url.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
 }
-app.post('/get-data', (req, res) => {
+app.get('/get-ticket', (req, res) => {
   console.log('req', req.url);
   let params = getParams();
   let appid = 'wx79e4dff84f30084b';
@@ -28,6 +38,17 @@ app.post('/get-data', (req, res) => {
         });
       });
     });
+});
+app.get('/get-data', (req, res) => {
+  console.log('req', req.url);
+  let { ACCESS_TOKEN, openid } = getParams();
+  let url = `https://api.weixin.qq.com/sns/userinfo?access_token=${ACCESS_TOKEN}&openid=${openid}&lang=zh_CN`;
+  request(url, function (error, response, body) {
+    res.json({
+      re: '200',
+      data: JSON.parse(body),
+    });
+  })
 });
 
 app.get('/', (req, res) => {
