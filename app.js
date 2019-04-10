@@ -22,7 +22,6 @@ function getParams() {
 }
 app.get('/get-ticket', (req, res) => {
   console.log('req', req.url);
-  let params = getParams();
   let appid = 'wx79e4dff84f30084b';
   let secret = '28fbe39d77453b42dd63cc607c790339';
   request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + appid + '&secret=' + secret,

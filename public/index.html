@@ -32,7 +32,7 @@
         signature, // 必填，签名
         jsApiList // 必填，需要使用的JS接口列表
       });
-      fetch('/get-data', getOpt).then(res => {
+      fetch(`/get-data?ticket=${ticket}&ACCESS_TOKEN=${ACCESS_TOKEN}`, getOpt).then(res => {
         console.log('res: ', res);
       })
     })
