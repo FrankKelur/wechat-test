@@ -17,7 +17,7 @@ var allowCrossDomain = function (req, res, next) {
 };
 app.use(allowCrossDomain);
 
-function getParams() {
+function getParams(req) {
   return (req.url.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
 }
 app.get('/get-ticket', (req, res) => {
@@ -40,7 +40,7 @@ app.get('/get-ticket', (req, res) => {
 });
 app.get('/get-data', (req, res) => {
   console.log('req', req.url);
-  let { ACCESS_TOKEN, openid } = getParams();
+  let { ACCESS_TOKEN, openid } = getParams(req);
   let url = `https://api.weixin.qq.com/sns/userinfo?access_token=${ACCESS_TOKEN}&openid=${openid}&lang=zh_CN`;
   request(url, function (error, response, body) {
     res.json({
