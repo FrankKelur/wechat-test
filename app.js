@@ -17,8 +17,10 @@ var allowCrossDomain = function (req, res, next) {
 };
 app.use(allowCrossDomain);
 
-let appid = 'wx79e4dff84f30084b';
-let secret = '28fbe39d77453b42dd63cc607c790339';
+// let appid = 'wx79e4dff84f30084b';
+// let secret = '28fbe39d77453b42dd63cc607c790339';
+let appid = 'wx661994a569e2f0e3'
+let secret = '4ee9efca1c18ade6b163603dfb217522'
 function getParams(req) {
   return (req.url.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
 }
