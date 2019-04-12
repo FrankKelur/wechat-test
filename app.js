@@ -2,7 +2,7 @@ const sha1 = require('sha1');
 const express = require('express')
 const app = express()
 app.use('/static', express.static('public'));
-app.use('/', express.static('public'));
+// app.use('/', express.static('public'));
 var request = require('request');
 const hostname = '0.0.0.0';
 const port = 8888;
@@ -11,6 +11,10 @@ const port = 8888;
 // let secret = '28fbe39d77453b42dd63cc607c790339';
 let appid = 'wx661994a569e2f0e3'
 let secret = '4ee9efca1c18ade6b163603dfb217522'
+
+function getParams(req) {
+  return (req.url.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
+}
 
 app.get('/', (req, res) => {
   console.log('req', req.url);
