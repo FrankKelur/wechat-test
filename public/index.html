@@ -6,7 +6,7 @@
     return (location.href.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
   }
   function init(jsApiList) {
-    let appId = 'wx661994a569e2f0e3'; //'wx79e4dff84f30084b';   //'wx661994a569e2f0e3';
+    let appId = 'wx79e4dff84f30084b';   //'wx661994a569e2f0e3';
 
     let getOpt = {
       method: 'GET',
@@ -19,9 +19,10 @@
       cache: 'default',
       headers: { 'content-type': 'application/json' }
     }
-    fetch('/get-ticket', getOpt).then(res => res.json()).then(res => {
-      console.log('res', res);
-      let { ticket } = res;
+    //fetch('/get-ticket', getOpt).then(res => res.json()).then(res => {
+    //  console.log('res', res);
+     let ticket = 'HoagFKDcsGMVCIY2vOjf9jFY6SyamZahKW1eHUMyOFmXWl0VxO9A9w_NNSLAqntkVmTgok8k7TLDApUl6hDeew';
+	 //let { ticket } = res;
       let nonceStr = 'tgCKCDO9AKffs3ZqCIWbPDIQAcJZ18iX3tVZr4DgGP4';
       let timestamp = Math.floor(new Date().getTime() / 1000);
       let url = location.href;
@@ -39,9 +40,9 @@
       // fetch(`/get-data?code=${query.code}`, getOpt)
       // .then(res => res.json())
       // .then(res => console.log(res));
-    })
+//    })
 
-  }
+ }
   init(['onMenuShareAppMessage', 'onMenuShareTimeline', 'hideMenuItems']);
 
   wx.ready(function () {
@@ -56,8 +57,8 @@
     wx.onMenuShareAppMessage({
       title, // 分享标题
       desc, // 分享描述
-      link: 'http://uatfront.sg.work/static/test.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-      imgUrl: 'http://uatfront.sg.work/static/logo.png', // 分享图标
+      link: 'www.baidu.com', //'http://uatfront.duoshengbu.com/test.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: 'https://www.wangbase.com/blogimg/asset/201808/bg2018080601.jpg', //'http://uatfront.duoshengbu.com/static/logo.png', // 分享图标
       type: 'link', // 分享类型,music、video或link，不填默认为link
       success: function () {
         // 用户点击了分享后执行的回调函数
@@ -66,8 +67,8 @@
     });
     wx.onMenuShareTimeline({
       title, // 分享标题
-      link: 'http://uatfront.sg.work/static/test.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-      imgUrl: 'http://uatfront.sg.work/static/logo.png', // 分享图标
+      link: 'http://uatfront.duoshengbu.com/static/test.html', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+      imgUrl: 'http://uatfront.duoshengbu.com/static/logo.png', // 分享图标
       success: function () {
         // 用户点击了分享后执行的回调函数
         console.log('这是他妈的成功了', arguments);

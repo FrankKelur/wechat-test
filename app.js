@@ -2,7 +2,7 @@ const sha1 = require('sha1');
 const express = require('express')
 const app = express()
 app.use('/static', express.static('public'));
-app.use('/', express.static('public'));
+//app.use('/', express.static('public'));
 var request = require('request');
 const hostname = '0.0.0.0';
 const port = 8888;
@@ -15,15 +15,16 @@ var allowCrossDomain = function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 };
-app.use(allowCrossDomain);
+//app.use(allowCrossDomain);
 
-// let appid = 'wx79e4dff84f30084b';
-// let secret = '28fbe39d77453b42dd63cc607c790339';
-let appid = 'wx661994a569e2f0e3'
-let secret = '4ee9efca1c18ade6b163603dfb217522'
+let appid = 'wx79e4dff84f30084b';
+let secret = '28fbe39d77453b42dd63cc607c790339';
+//let appid = 'wx661994a569e2f0e3'
+//let secret = '4ee9efca1c18ade6b163603dfb217522'
 function getParams(req) {
   return (req.url.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
 }
+/*
 app.get('/get-ticket', (req, res) => {
   console.log('req', req.url);
   request('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' + appid + '&secret=' + secret,
@@ -55,10 +56,10 @@ app.get('/get-data', (req, res) => {
     })
   })
 });
-
+*/
 app.get('/', (req, res) => {
   console.log('req', req.url);
-  let { echostr, nonce, signature, timestamp } = getParams();
+  let { echostr, nonce, signature, timestamp } = getParams(req);
   let token = 'zhaipengchao';
   let arr = [token, nonce, timestamp].sort();
   let result = sha1(arr.join(''));
