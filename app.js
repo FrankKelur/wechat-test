@@ -1,12 +1,18 @@
 const sha1 = require('sha1');
 const express = require('express')
 const app = express()
+<<<<<<< HEAD
 app.use('/static', express.static('public'));
 //app.use('/', express.static('public'));
+=======
+// app.use('/static', express.static('public'));
+// app.use('/', express.static('public'));
+>>>>>>> 0198847fa34da51dd867189d8fc4859cbfa9f6a5
 var request = require('request');
 const hostname = '0.0.0.0';
 const port = 8888;
 
+<<<<<<< HEAD
 var allowCrossDomain = function (req, res, next) {
   // console.log('req.origin', req.headers)
   res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -58,6 +64,16 @@ app.get('/get-data', (req, res) => {
 });
 */
 app.get('/', (req, res) => {
+=======
+// let appid = 'wx79e4dff84f30084b';
+let appid = 'wx661994a569e2f0e3'
+
+function getParams(req) {
+  return (req.url.split('?')[1] || '').split('&').reduce((res, item) => { let [key, val] = item.split('='); res[key] = val; return res; }, {});
+}
+
+app.get('/*', (req, res) => {
+>>>>>>> 0198847fa34da51dd867189d8fc4859cbfa9f6a5
   console.log('req', req.url);
   let { echostr, nonce, signature, timestamp } = getParams(req);
   let token = 'zhaipengchao';
